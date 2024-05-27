@@ -11,5 +11,9 @@ def DiaDeHoy(request):
         dia = datetime.now() 
         documentoDeTexto = f"Hoy es dia: <br> {dia}"
         return HttpResponse(documentoDeTexto)
+    
+def miNombreEs(self,nombre):
+     documentoDeTexto = f"Mi nombre es: <br><br> {nombre}"
+     return HttpResponse(documentoDeTexto)
 
     
