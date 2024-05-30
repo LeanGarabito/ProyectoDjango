@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from datetime import datetime
 from django.template import Template, Context, loader
-
+import random
 
 #Incio
 def inicio(request):
@@ -46,14 +46,9 @@ def template2(request,nombre,apellido,edad):
     template_renderizado = template.render(contexto)
     return HttpResponse(template_renderizado)
 
-
+#sin abrir archivo y cerrar1 
 def template3(request,nombre,apellido,edad):
-    archivo_abierto = open(r"C:\Users\jigwo\Desktop\Estudios\MiProyecto\plantilla\template2.html")
-    # archivo_abierto = open("plantilla\template2.html")
-    template = Template(archivo_abierto.read())
-    
-    archivo_abierto.close()
-    template = loader.get_template()
+    template = loader.get_template("template2.html")
     
     fecha = datetime.now()
     datos =  {"fecha": fecha,
@@ -61,8 +56,22 @@ def template3(request,nombre,apellido,edad):
               "apellido": apellido,
               "edad": edad,
     }
-    #crar contexto
-    contexto = Context(datos)    
-    
-    template_renderizado = template.render(contexto)
+
+    template_renderizado = template.render(datos)
     return HttpResponse(template_renderizado)
+
+def template4(request,nombre,apellido,edad):
+    fecha = datetime.now()
+    datos =  {"fecha": fecha,
+              "nombre": nombre,
+              "apellido": apellido,
+              "edad": edad,
+    }
+    return render(request, "template2.html", datos)
+
+
+def probando(request):
+    
+    lista = list(range(500))
+    numeros = random.choices(lista, k=50)
+    return render(request,"probando.html", {"numeros": numeros})

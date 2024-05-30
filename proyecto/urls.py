@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from inicio.views import inicio, template, template2
+from inicio.views import inicio, template, template2, template3, template4, probando
 
 
 
@@ -24,7 +24,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', inicio),
     path("template/<nombre>/<apellido>/<int:edad>", template),
-    path("template2/<nombre>/<apellido>/<int:edad>", template2)
+    path("template2/<nombre>/<apellido>/<int:edad>", template2),
+    path("template3/<nombre>/<apellido>/<int:edad>", template3),
+    path("template4/<nombre>/<apellido>/<int:edad>", template4),
+    path("probando/",probando)
+    
+    
     
     
 ]
