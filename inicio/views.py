@@ -5,10 +5,10 @@ from django.http import HttpResponse
 from datetime import datetime
 from django.template import Template, Context, loader
 import random
-
+from inicio.models import Auto
 #Incio
 def inicio(request):
-    return HttpResponse("Hola mica logre hacer una pagina :V")
+    return render(request, "inicio/index.html")
 
 # #Mostras dia de hoy
 # def DiaDeHoy(request):
@@ -75,3 +75,8 @@ def probando(request):
     lista = list(range(500))
     numeros = random.choices(lista, k=50)
     return render(request,"probando.html", {"numeros": numeros})
+
+def crear_auto(request, marca, modelo):
+    auto = Auto(marca =marca, modelo=modelo)
+    auto.save()
+    return render(request,"auto_template/creacion.html", {"auto": auto})
